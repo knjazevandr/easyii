@@ -16,6 +16,10 @@ class Controller extends \yii\web\Controller
         if(!parent::beforeAction($action))
             return false;
 
+        ;
+        if ($layout = models\Setting::get('layout')) {
+            $this->layout = $layout;
+        }
         if(Yii::$app->user->isGuest){
             Yii::$app->user->setReturnUrl(Yii::$app->request->url);
             return $this->redirect(['/admin/sign/in']);
